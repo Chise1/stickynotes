@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Memo.views import WxLogin, UserInfo, Register, Login, test_email
+from Memo.views import test_email, Data
+from UserManager.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('wx_login',WxLogin.as_view()),
-    path('login',Login.as_view()),
-    path('userinfo',UserInfo.as_view()),
-    path('register',Register.as_view()),
-    path('test/test_email',test_email)
+    path('wx_login', WxLogin.as_view()),
+    path('login', Login.as_view()),
+    path('userinfo', UserInfo.as_view()),
+    path('register', Register.as_view()),
+    path('test/test_email', test_email),
+    path('data', Data.as_view()),  # 数据获取
 ]
