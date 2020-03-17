@@ -18,11 +18,10 @@ import string
 # 登录过期时间
 out_line = 3600 * 24 * 7
 
-
+import uuid
 def ranstr(num):
     """生成随机字符串"""
-    salt = ''.join(random.sample(string.ascii_letters + string.digits, num))
-    return salt
+    return str(uuid.uuid4()).replace('-','')
 
 
 class Login(View):
@@ -86,6 +85,9 @@ class WxLogin(View):
             except:
                 # 该用户没注册
                 # 随机生成一个user
+                username=ranstr(128)
+                password=ranstr(128)
+
                 ran_user = User.objects.create_user(username=ranstr(128), password=ranstr(128))
                 wx_user = UserOtherInfo.objects.create(wx_openid=res['openid'], wx_session_key=res['session_key'],
                                                        user_id=ran_user.id)
@@ -93,7 +95,8 @@ class WxLogin(View):
                 try:
                     wx_info = UserWxInfo.objects.get(other_info_id=wx_user.id)
                     wx_info.save(**userInfo)
-                except:
+                except Exception as e:
+                    print(e)
                     wx_info = UserWxInfo.objects.create(other_info_id=wx_user.id, **userInfo)
                 encoded_jwt = jwt.encode(
                     {"userName": wx_user.user.username, "timeout": int(time.time() + out_line), "flag": "wx"},
@@ -142,3 +145,9 @@ class UserInfo(View):
 
         print(res)
         return JsonResponse({"code": 0})
+from django.core.mail import send_mail  
+from TODo.settings import EMAIL_HOST_USER
+def test_email(request):
+    # send_mail的参数分别是  邮件标题，邮件内容，发件箱(settings.py中设置过的那个)，收件箱列表(可以发送给多个人),失败静默(若发送失败，报错提示我们)
+    send_mail('Subject here', 'Here is the message.',  EMAIL_HOST_USER,  ['531189371@qq.com'], fail_silently=False)
+    return JsonResponse({"code":0})

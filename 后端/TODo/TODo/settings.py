@@ -77,10 +77,21 @@ WSGI_APPLICATION = 'TODo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',   # 数据库引擎
+        'NAME': 'todo2',  # 数据库名，先前创建的
+        'USER': 'root',     # 用户名，可以自己创建用户
+        'PASSWORD': '',  # 密码
+        'HOST': 'localhost',  # mysql服务所在的主机ip
+        'PORT': '3306',         # mysql服务端口
     }
 }
 
@@ -105,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'UTC'
 
@@ -119,3 +130,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#配置邮件发送
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  #email后端
+EMAIL_USE_TLS = False   #是否使用TLS安全传输协议
+EMAIL_USE_SSL = True    #是否使用SSL加密，qq企业邮箱要求使用
+EMAIL_HOST = 'smtp.qq.com'   #发送邮件的邮箱 的 SMTP服务器，这里用了qq企业邮箱
+EMAIL_PORT = 465     #发件箱的SMTP服务器端口
+EMAIL_HOST_USER = '1027408391@qq.com'    #发送邮件的邮箱地址
+EMAIL_HOST_PASSWORD = 'dsjowbxrrulobdcj'         #发送邮件的邮箱密码
+DEFAULT_FROM_EMAIL=EMAIL_HOST_USER
