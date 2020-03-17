@@ -244,6 +244,8 @@
 </script>
 
 <style>
+	@import '../../common/login_css.css';
+	
 	.action-row {
 		display: flex;
 		flex-direction: row;

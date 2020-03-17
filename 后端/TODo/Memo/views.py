@@ -45,9 +45,6 @@ class Login(View):
             return JsonResponse({"code": -1, "msg": "错误或未注册"})
 
 
-import random
-
-
 class WxLogin(View):
     """微信方式的登录"""
 
@@ -94,7 +91,14 @@ class WxLogin(View):
             finally:
                 try:
                     wx_info = UserWxInfo.objects.get(other_info_id=wx_user.id)
-                    wx_info.save(**userInfo)
+                    wx_info.nickName=userInfo.get('nickName')
+                    wx_info.gender = userInfo.get('gender', 0)
+                    wx_info.country = userInfo.get('country')
+                    wx_info.province = userInfo.get('nickName')
+                    wx_info.city = userInfo.get('nickName')
+                    wx_info.language = userInfo.get('nickName')
+                    wx_info.avatarUrl = userInfo.get('nickName')
+                    wx_info.save()
                 except Exception as e:
                     print(e)
                     wx_info = UserWxInfo.objects.create(other_info_id=wx_user.id, **userInfo)

@@ -28,7 +28,7 @@ const addUser = function(userInfo,func) { //注册账户,func是login的回调�
 				uni.showToast({
 					title: "注册成功"
 				})
-				uni.switchTab({
+				uni.redirectTo({
 					url:"/pages/main/main"
 				});
 			} else {

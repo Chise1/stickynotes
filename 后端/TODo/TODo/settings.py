@@ -41,12 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Memo',
     'UserManager',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-
+'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -54,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 ROOT_URLCONF = 'TODo.urls'
-
+CORS_ORIGIN_ALLOW_ALL = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

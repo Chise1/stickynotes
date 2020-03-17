@@ -40,5 +40,6 @@
 </script>
 
 <style>
+	@import '../../common/login_css.css';
 
 </style>

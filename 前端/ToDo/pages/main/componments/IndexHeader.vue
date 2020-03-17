@@ -1,5 +1,5 @@
 <template>
-	<view class="todo-header" v-if="list.length !=0">
+	<view class="todo-header">
 		<view class="todo-header-left">
 			<text class="active-text">{{active_text}}</text>
 			<text>{{data_num}}条</text>
@@ -58,7 +58,7 @@
 <style>
 	.todo-header {
 		position: fixed;
-		top: 0;
+		top: var(--window-top);
 		left: 0;
 		width: 100%;
 		display: flex;
