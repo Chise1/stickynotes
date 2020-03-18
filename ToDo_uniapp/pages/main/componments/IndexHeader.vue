@@ -40,7 +40,7 @@
 				if(this.active===0){
 					return "全部"
 				}else if(this.active===1){
-					return "代班"
+					return "代办"
 				}else{
 					return "完成"
 				}
@@ -58,7 +58,8 @@
 <style>
 	.todo-header {
 		position: fixed;
-		top: var(--window-top);
+		/* top:0; */
+		top: var(--window-top); 
 		left: 0;
 		width: 100%;
 		display: flex;

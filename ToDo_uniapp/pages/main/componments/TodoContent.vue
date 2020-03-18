@@ -1,16 +1,38 @@
 <template>
-	<view class="todo-content">
-		<view class="todo-list" :class="{'todo--finish':item.checked}" v-for="(item,index) in listData" :key="item.id" @click="finish(item.id)">
-			<view class="todo-list-checkbox">
-				<view class="checkbox"></view>
+	<view>
+		<!-- <view class="todo-content">
+			<view class="todo-list" :class="{'todo--finish':item.checked}" v-for="(item,index) in listData" :key="item.id"
+			 @click="finish(item.id)">
+				<view class="todo-list-checkbox">
+					<view class="checkbox"></view>
+				</view>
+				<view class="todo-list-content">{{item.content}} </view>
 			</view>
-			<view class="todo-list-content">{{item.content}} </view>
-		</view>
+		</view> -->
+		<uni-swipe-action class="todo-content">
+			<uni-swipe-action-item v-for="(item,index) in listData" :key="item.id" @click="swipeClick($event,index)" @change="swipeChange"
+			 :options="item.options">
+				<view @click="finish(index)" :class="{'content-checked':item.checked}">
+				<view class="todo-list-checkbox">
+					<view class="checkbox"></view>
+				</view>
+				<view  class="todo-list-content">{{item.content}} </view>
+				
+				</view>
+			</uni-swipe-action-item>
+		</uni-swipe-action>
 	</view>
+
 </template>
 
 <script>
+	import uniSwipeAction from '@/components/uni-swipe-action/uni-swipe-action.vue'
+	import uniSwipeActionItem from '@/components/uni-swipe-action-item/uni-swipe-action-item.vue'
 	export default {
+		components: {
+			uniSwipeAction,
+			uniSwipeActionItem
+		},
 		name: 'TodoContent',
 		props: {
 			listData: {
@@ -18,20 +40,123 @@
 			}
 		},
 		data() {
-			return {}
+			return {
+				isOpened: false,
+				swipeList: [{
+					options: [{
+						text: '添加',
+						style: {
+							backgroundColor: 'rgb(255,58,49)'
+						}
+					}],
+					id: 0,
+					content: 'item1'
+				}, {
+					id: 1,
+					options: [{
+						text: '置顶'
+					}, {
+						text: '删除',
+						style: {
+							backgroundColor: 'rgb(255,58,49)'
+						}
+					}],
+					content: 'item2'
+				}, {
+					id: 2,
+					options: [{
+						text: '修改'
+					}, {
+						text: '取消',
+						style: {
+							backgroundColor: 'rgb(254,156,1)'
+						}
+					}, {
+						text: '删除',
+						style: {
+							backgroundColor: 'rgb(255,58,49)'
+						}
+					}],
+					content: 'item3'
+				}]
+			}
 		},
-		methods:{
-			finish(id){
-				this.$emit('change',id)
+		methods: {
+			finish(index) { //主要是用于向上级反馈已经完成
+				if(this.listData[index].checked==false){
+					this.$emit('change','checked', index)
+				}
+				
+			},
+			modify(id) { //反馈修改数据
+				pass
+			},
+			del(id) { //反馈被删除
+				pass
+			},
+			bindClick(e) {
+				uni.showToast({
+					title: `点击了${e.content.text}按钮`,
+					icon: 'none'
+				})
+			},
+			setOpened() {
+				this.isOpened = !this.isOpened
+			},
+			change(e) {
+				this.isOpened = e
+				console.log('返回：', e);
+			},
+			swipeChange(e) {
+				console.log("触发滑动变更")
+				console.log('返回：', e);
+			},
+			swipeClick(e, index) {
+				let {
+					content
+				} = e
+				//删除数据操作
+				if (content.text === '删除') {
+					uni.showModal({
+						title: '提示',
+						content: '是否删除',
+						success: (res) => {
+							if (res.confirm) {
+								this.$emit('change', 'delete', index)
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
+				}
+				else if(content.text==='取消'){//完成操作
+					this.$emit('change', 'unchecked', index)
+				}else if(content.text==='完成'){
+					this.$emit('change', 'checked', index)
+				}
+				else {
+					uni.showToast({
+						title: `点击了${e.content.text}按钮`,
+						icon: 'none'
+					})
+				}
 			}
 		}
 	}
 </script>
 
 <style>
+	.content-checked{
+		text-decoration: line-through;
+	}
 	.todo-content {
 		position: relative;
-		padding-top: 50px;
+		top: 50px;
+		/* bottom: 100px; */
+		/* #ifdef MP-WEIXIN*/  
+		top :20px;
+		margin: 1px;
+		/* #endif */
 		padding-bottom: 100px;
 	}
 

@@ -34,13 +34,12 @@ class Data(View):
         l=[]
         jwt=request.GET['jwt']
         flag, res = check_jwt(jwt)
-        memos = Memo.objects.filter(author_name=res['userName'])
+        memos = Memo.objects.filter(author_name=res['userName'],is_actived=True)
         for memo in memos:
             l.append(model_to_dict(memo))
         return JsonResponse({"code": 0, "msg": "success", "data": l})
 
     def post(self, request):  # 创建某条数据
-
         data=json.loads(request.body)
         flag,res=check_jwt(data['jwt'])
         if not flag:
@@ -49,8 +48,22 @@ class Data(View):
         memo=Memo.objects.create(content=data['content'],checked=data['checked'],author_name=userName)
         return JsonResponse({"code": 0,"data_id":memo.id, "msg": "success"})
 
-    def update(self, request):  # 更新某一条数据
-        pass
+    def put(self, request):  # 更新某一条数据
+        data = json.loads(request.body)
+        print(data)
+        flag, res = check_jwt(data['jwt'])
+        if not flag:
+            return JsonResponse({"code": -1, "msg": "账户错误"})
+        if data['flag']=='unchecked':#修改为未完成
+            Memo.objects.filter(id=data['id']).update(checked=False)
+        else:
+            Memo.objects.filter(id=data['id']).update(checked=True)
+        return JsonResponse({"code":0,"msg":"success"})
 
     def delete(self,request):
-        pass
+        data = json.loads(request.body)
+        flag, res = check_jwt(data['jwt'])
+        if not flag:
+            return JsonResponse({"code": -1, "msg": "账户错误"})
+        Memo.objects.filter(id=data['id']).update(is_actived=False)
+        return JsonResponse({"code": 0, "msg": "success"})

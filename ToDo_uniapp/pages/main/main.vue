@@ -1,19 +1,21 @@
 <template>
 	<view>
-		<!-- 状态栏 -->
-		<index-header v-if="list.length!=0" :data_num="data_num" @choose_state="tab"></index-header>
-		<!-- 没有数据 -->
-		<view v-if="list.length==0">
-			<view class="image-default">
-				<image src="../../static/default.png" mode="aspectFit" class="default"></image>
+			<!-- 状态栏 -->
+			<index-header v-if="list.length!=0" :data_num="data_num" @choose_state="tab"></index-header>
+			<!-- 没有数据 -->
+			<view v-if="list.length==0">
+				<view class="image-default">
+					<image src="../../static/default.png" mode="aspectFit" class="default"></image>
+				</view>
+				<view class="default-info">
+					<view class="defa-text">您还没有创建任何待办事项</view>
+					<view class="defa-text">点击下方+添加一个把</view>
+				</view>
 			</view>
-			<view class="default-info">
-				<view class="defa-text">您还没有创建任何待办事项</view>
-				<view class="defa-text">点击下方+添加一个把</view>
-			</view>
-		</view>
-		<!-- 内容 -->
-		<todo-content @change="finish" :listData="listData"></todo-content>
+			<!-- 内容 -->
+			<todo-content @change="finish" :listData="listData"></todo-content>
+
+
 		<!-- 创建按钮 -->
 		<view class="create-todo" @click="create">
 			<text class="iconfont icon-add" :class="{'create-todo-active':acitve}"></text>
@@ -51,7 +53,7 @@
 				//输入值
 				value: '',
 				//显示值
-				list: [],//list结构：{id,id: content,checked: false}
+				list: [], //list结构：{id,id: content,checked: false}
 				acitve: false, //选中效果
 				activeIndex: 0,
 			}
@@ -129,7 +131,7 @@
 					}, 50)
 				})
 			},
-			add: function() {//创建按钮，新增数据
+			add: function() { //创建按钮，新增数据
 				if (this.value == '') {
 					uni.showToast({
 						title: "请输入内容",
@@ -137,27 +139,38 @@
 					})
 					return
 				}
-				let data={
+				let data = {
 					id: 'id' + new Date().getTime(),
 					content: this.value,
 					checked: false,
-					has_upload:false
+					has_upload: false
 				}
+				data.options = [{
+					text: '修改'
+				}, {
+					text: '完成',
+					style: {
+						backgroundColor: 'rgb(254,156,1)'
+					}
+				}, {
+					text: '删除',
+					style: {
+						backgroundColor: 'rgb(255,58,49)'
+					}
+				}]
 				this.list.unshift(data)
 				this.value = ''
 				this.acitve = false
-				service.create_data(data,this.list)
+				service.create_data(data, this.list)
 			},
-			finish(id) {
-				console.log(this.list)
-				let index = this.list.findIndex((item) => item.id === id)
-				this.list[index].checked = !this.list[index].checked
-				// item=>{
-				// 	if(item.id==id){
-				// 		console.log(item)
-				// 		item.checked=!item.checked
-				// 	}
-				// }
+			//点击的时候，触发自动完成
+			finish(text, index) {
+				console.log("前端接收到信息：", text)
+				if (text == 'checked' || text == 'unchecked') {
+					service.modify_data(index, text, this.list)
+				} else if (text == 'delete') { //接收到删除信息
+					service.delete_data(index, this.list)
+				}
 			},
 			tab(index) {
 				console.log("接受:", index)
@@ -165,18 +178,16 @@
 			}
 
 		},
-		watch:{
-			hasLogin:function(newQuestion, oldQuestion){
-				if(newQuestion=='')
-				{
-					return 
+		watch: {
+			hasLogin: function(newQuestion, oldQuestion) {
+				if (newQuestion == '') {
+					return
 				}
-				console.log("成功侦听")
 				service.get_data(this.list)
-				
+
 			}
 		}
-		
+
 	}
 </script>
 <style>

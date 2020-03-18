@@ -185,6 +185,10 @@
 										}
 									},
 									fail(res) {
+										uni.showToast({
+											title:"服务器异常",
+											icon:'none'
+										})
 										console.log(res)
 									}
 								})
