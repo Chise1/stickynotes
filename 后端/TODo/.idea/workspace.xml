@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eff33e8d-3a58-42ee-b3ff-d2d536b4cff4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../ToDo_uniapp/pages.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../ToDo_uniapp/pages.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ToDo_uniapp/pages/main/componments/TodoContent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../ToDo_uniapp/pages/main/componments/TodoContent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ToDo_uniapp/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../ToDo_uniapp/service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Memo/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Memo/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Memo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Memo/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,6 +114,9 @@
       <workItem from="1584370547008" duration="17911000" />
       <workItem from="1584500330479" duration="2576000" />
       <workItem from="1584509212306" duration="5151000" />
+      <workItem from="1584523741292" duration="604000" />
+      <workItem from="1584534266502" duration="55000" />
+      <workItem from="1584534695269" duration="1625000" />
     </task>
     <servers />
   </component>
@@ -125,10 +124,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="330" y="140" key="#Deployment" timestamp="1584509244540">
+    <state x="330" y="140" key="#Deployment" timestamp="1584534743330">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="330" y="140" key="#Deployment/0.0.1536.824@0.0.1536.824" timestamp="1584509244540" />
+    <state x="330" y="140" key="#Deployment/0.0.1536.824@0.0.1536.824" timestamp="1584534743330" />
     <state x="222" y="66" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584368566588">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

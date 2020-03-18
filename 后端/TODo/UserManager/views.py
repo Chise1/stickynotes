@@ -5,7 +5,6 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from TODo.settings import SECRET_KEY
-# Create your views here.
 from django.views import View
 import requests
 from TODo.settings import WX_APPID, WX_APPSECRET
