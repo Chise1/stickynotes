@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@t954*ksck=tw!2cc#fhcte(q(_p)d)afhvz#qt&+wr1_trf1c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # 微信小程序的信息
 WX_APPID = "wx68b921c34319a458"

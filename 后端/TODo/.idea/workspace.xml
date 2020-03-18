@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eff33e8d-3a58-42ee-b3ff-d2d536b4cff4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/TODo/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +65,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -116,7 +117,7 @@
       <workItem from="1584509212306" duration="5151000" />
       <workItem from="1584523741292" duration="604000" />
       <workItem from="1584534266502" duration="55000" />
-      <workItem from="1584534695269" duration="1625000" />
+      <workItem from="1584534695269" duration="8514000" />
     </task>
     <servers />
   </component>
@@ -168,10 +169,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="325" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584522639344" />
-    <state x="108" y="59" key="SettingsEditor" timestamp="1584428023023">
+    <state x="108" y="59" key="SettingsEditor" timestamp="1584547817882">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="108" y="59" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584428023023" />
+    <state x="108" y="59" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584547817882" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1584418906973">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -180,5 +181,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="1018" y="319" key="publish.login/0.0.1536.824@0.0.1536.824" timestamp="1584358449617" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1584542963906">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1584542963906" />
   </component>
 </project>

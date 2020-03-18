@@ -2,3 +2,6 @@ django==2.2.10
 pyjwt
 requests
 mysqlclient
+supervisor
+uwsgi
+django-cors-headers
