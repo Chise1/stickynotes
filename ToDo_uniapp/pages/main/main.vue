@@ -98,7 +98,6 @@
 				//已完成
 				else if (this.activeIndex === 1) {
 					listx.forEach((item) => {
-
 						if (!item.checked) {
 							newList.push(item)
 						}
@@ -176,7 +175,6 @@
 				console.log("接受:", index)
 				this.activeIndex = index
 			}
-
 		},
 		watch: {
 			hasLogin: function(newQuestion, oldQuestion) {
@@ -184,7 +182,6 @@
 					return
 				}
 				service.get_data(this.list)
-
 			}
 		}
 

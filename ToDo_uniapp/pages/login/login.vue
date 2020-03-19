@@ -30,7 +30,6 @@
 </template>
 
 <script>
-	const server_ip = "http://39.98.132.68:8032"
 	import service from '../../service.js';
 	import {
 		mapState,
@@ -116,7 +115,7 @@
 					password: this.password
 				};
 				uni.request({
-					url: server_ip + "/login",
+					url: service.server_ip + "/login",
 					data: data,
 					method: 'POST',
 					success(res) {
@@ -157,7 +156,7 @@
 								 */
 								//ifdef MP-WEIXIN
 								uni.request({
-									url: server_ip + "/wx_login",
+									url: service.server_ip + "/wx_login",
 									data: {
 										code: res.code,
 										userInfo: infoRes.userInfo,
@@ -165,8 +164,15 @@
 									},
 									method: 'POST',
 									success(res) {
+										if(res.statusCode!=200){
+											uni.showToast({
+												title:"登录失败",
+												icon:'none'
+											})
+											return 
+										}
 										res = res.data
-										console.log(res)
+										
 										if (res.code == 0) { //登录成功
 											console.log(res)
 											uni.setStorage({
@@ -189,7 +195,6 @@
 											title:"服务器异常",
 											icon:'none'
 										})
-										console.log(res)
 									}
 								})
 

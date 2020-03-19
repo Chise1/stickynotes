@@ -10,8 +10,10 @@ const getUsers = function() {
 	}
 	return JSON.parse(ret);
 }
-
-const server_ip = "http://39.98.132.68:8032"
+//测试端口
+const server_ip="http://39.98.132.68:8033"
+//正式端口
+// const server_ip = "http://www.salent.vip"
 const addUser = function(userInfo, func) { //注册账户,func是login的回调函数
 	uni.request({
 		url: server_ip + "/register",
@@ -289,5 +291,6 @@ export default {
 	create_data,
 	delete_data,
 	modify_data,
-	get_data
+	get_data,
+	server_ip
 }
